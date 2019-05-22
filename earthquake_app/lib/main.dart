@@ -5,11 +5,8 @@ import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 
 void main() async {
-  Map data = await getQuake();
-
-  List features = data['features'];
-
   runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           title: Text('Quake App'),
@@ -17,36 +14,49 @@ void main() async {
           backgroundColor: Colors.pinkAccent,
         ),
         body: Center(
-          child: ListView.separated(
-            separatorBuilder: (BuildContext context, int index) => Divider(),
-            itemCount: features.length,
-            padding: EdgeInsets.all(15),
-            itemBuilder: (BuildContext context, int position) {
+          child: FutureBuilder(
+            future: getQuake(),
+            builder: (context, AsyncSnapshot map) {
+              if(map.hasData) {
+                if(map.data != null) {
+                  List features = map.data['features'];
+                  return ListView.separated(
+                    separatorBuilder: (BuildContext context, int index) => Divider(),
+                    itemCount: features.length,
+                    padding: EdgeInsets.all(15),
+                    itemBuilder: (BuildContext context, int position) {
 
-              // https://pub.dartlang.org/packages/intl#-readme-tab-
-              // https://pub.dartlang.org/documentation/intl/latest/intl/DateFormat-class.html
+                      // https://pub.dartlang.org/packages/intl#-readme-tab-
+                      // https://pub.dartlang.org/documentation/intl/latest/intl/DateFormat-class.html
 
 
-              var timeFormat = DateFormat.yMMMMd("en_US").add_jm();
+                      var timeFormat = DateFormat.yMMMMd("en_US").add_jm();
 
-              return ListTile(
-                leading: CircleAvatar(
-                  child: Text('${features[position]['properties']['mag']}'),
-                ),
-                title: Text(
-                  '${features[position]['properties']['place']}',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                subtitle: Text(
-                  'At ${timeFormat.format(DateTime.fromMillisecondsSinceEpoch(features[position]['properties']['time']))}',
-                  style: TextStyle(
-                      fontStyle: FontStyle.italic, fontWeight: FontWeight.bold),
-                ),
-                onTap: () {
-                  var coordinates = features[position]['geometry']['coordinates'];
-                  showAlertDialog(context, coordinates);
-                },
-              );
+                      return ListTile(
+                        leading: CircleAvatar(
+                          child: Text('${features[position]['properties']['mag']}'),
+                        ),
+                        title: Text(
+                          '${features[position]['properties']['place']}',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        subtitle: Text(
+                          'At ${timeFormat.format(DateTime.fromMillisecondsSinceEpoch(features[position]['properties']['time']))}',
+                          style: TextStyle(
+                              fontStyle: FontStyle.italic, fontWeight: FontWeight.bold),
+                        ),
+                        onTap: () {
+                          var coordinates = features[position]['geometry']['coordinates'];
+                          showAlertDialog(context, coordinates);
+                        },
+                      );
+                    },
+                  );
+                }
+              }
+              else {
+                return CircularProgressIndicator();
+              }
             },
           ),
         ),

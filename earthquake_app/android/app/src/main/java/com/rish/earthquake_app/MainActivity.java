@@ -1,4 +1,4 @@
-package com.rish.earthquake_app;
+package com.rish.earthquake;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;
