@@ -93,6 +93,16 @@ class _WeatherState extends State<Weather> {
       builder: (BuildContext context, AsyncSnapshot<Map> snapshot) {
         if (snapshot.hasData) {
           Map content = snapshot.data;
+          if(content['cod'] == '404') {
+            return Center(child: Container(
+              margin: EdgeInsets.only(top: 150),
+              child: Text('City not found!!', style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 30,
+                  fontStyle: FontStyle.normal,
+                  fontWeight: FontWeight.w400)),
+            ));
+          }
           //_enteredCity = content['name'];
           print(content['main']['temp'].toString());
           return Container(

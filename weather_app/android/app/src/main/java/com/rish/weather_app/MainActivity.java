@@ -1,4 +1,4 @@
-package com.rish.weather_app;
+package com.rish.weatherapp;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;
