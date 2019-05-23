@@ -1,6 +1,6 @@
 # EarthquakeApp
 
-This mobile application is based on flutter framework.
+The app shows the list of most recent earthquakes around the world with their respective magnitude along with suitable color to indicate its impact. This mobile application is based on flutter framework.
 
 ## Getting Started
 

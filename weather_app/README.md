@@ -1,16 +1,7 @@
-# weather_app
+# Weather App
 
-A new Flutter application.
+The mobile app allows the user to enter the name of any place then the weather information of that place will be displayed by the app. This  application is based on flutter framework.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.io/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.io/docs/cookbook)
-
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.io/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+Simply install WeatherApp.apk on your android device and allow the app to access Internet
