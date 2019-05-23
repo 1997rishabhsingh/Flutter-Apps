@@ -1,4 +1,4 @@
-package com.rish.todo_app;
+package com.rish.todoapp;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;
